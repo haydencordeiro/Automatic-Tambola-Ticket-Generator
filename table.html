@@ -188,6 +188,7 @@
 
         <div id="generator-container">
             <input type="button" value="Generate" id="btn-generate" onclick="generateNum()">
+            <input type="button" value="Recover" id="btn-generate" onclick="backup()">
             <br>
             <div id="number">&nbsp;&nbsp;</div>
         </div>
@@ -253,7 +254,7 @@
                         return false;
 
                     this.defaults = {
-                        endAt: 90,
+                        endAt: 100,
                         numClass: 'autogen-num',
                         duration: 0.5,   // seconds
                         interval: 25  // ms
@@ -301,13 +302,22 @@
                             $this.text(settings.endAt.toString());
                             $("#num-" + settings.endAt).addClass("generated");
                             generated_numbers.push(settings.endAt);
+
+                            localStorage.setItem('myArray', JSON.stringify(generated_numbers));
                         }, settings.duration * 1000);
                     });
                 }
             });
         })(jQuery);
 
-        var generated_numbers = [];
+        var generated_numbers = JSON.parse(localStorage.getItem('myArray')) || [];
+
+        function backup() {
+            generated_numbers.forEach(function (entry) {
+                document.getElementById(`num-${entry}`).className += " generated";
+            });
+
+        }
 
         $(function () {
             for (i = 1; i <= 100; i++) {
@@ -318,11 +328,9 @@
             $('.num').css({ 'height': cw + 'px', 'line-height': cw + 'px' });
         });
 
+
         function generateNum() {
-            if (generated_numbers.length == 100) {
-                alert("Full House!");
-                return;
-            }
+
             while (true) {
                 var i = getRandomInt(1, 100);
                 if ($.inArray(i, generated_numbers) == -1) {
@@ -330,17 +338,17 @@
                     $("#number").numAnim({
                         endAt: i
                     });
-                    //$("#num-" + i).addClass("generated");
-                    //generated_numbers.push(i);
-                    //setTimeout("generateNum()",200);
+
                     break;
                 }
             }
+
         }
 
         function getRandomInt(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
+
     </script>
 
 

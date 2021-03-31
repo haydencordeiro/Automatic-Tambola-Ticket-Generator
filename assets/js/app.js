@@ -102,7 +102,7 @@ function generateTam(n) {
 
 
 
-  var loopTo = 10;
+  var loopTo = 200;
   document.getElementsByClassName("table-container")[0].innerHTML="";
   for (var n = 1; n <= loopTo; n++) {
     // console.log(n);
