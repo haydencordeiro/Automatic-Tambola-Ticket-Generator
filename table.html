@@ -1,0 +1,395 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teknack 2021</title>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            font-family: "Josefin Sans", sans-serif;
+
+        }
+
+        body {
+            background-color: #38194A;
+        }
+
+        .container {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        #grid-container {
+            margin-top: 20px;
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .num {
+            width: 9%;
+            margin: 2px;
+            border: 1px solid #CCC;
+            display: inline-block;
+            color: #CCC;
+            font-size: 24px;
+            box-sizing: border-box;
+        }
+
+        .generated {
+            border-color: #2A205C;
+            color: #2A205C;
+            background-color: lavender;
+        }
+
+        #generator-container {
+            border: 1px solid #888;
+            display: block;
+            position: fixed;
+            left: 20px;
+            top: 80px;
+            padding: 20px;
+            text-align: center;
+            box-sizing: border-box;
+            background-color: #FFF;
+        }
+
+        #number {
+            font-size: 36px;
+            text-align: center;
+            color: #2A205C;
+            font-weight: bold;
+            margin-top: 40px;
+            display: inline-block;
+            background-color: #EEE;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #EEE;
+        }
+
+        #btn-generate {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: #2A205C;
+            color: white;
+            width: 100px;
+            font-size: 14px;
+            padding: 10px;
+            cursor: pointer;
+            border: 1px solid #2A205C;
+            border-radius: 5px;
+        }
+
+        #btn-generate:active {
+            position: relative;
+            left: 1;
+            top: 1;
+        }
+
+        #banner-container {
+            border: 1px solid #888;
+            display: block;
+            position: fixed;
+            right: 20px;
+            top: 80px;
+            padding: 20px;
+            text-align: center;
+            box-sizing: border-box;
+            background-color: #FFF;
+        }
+
+        #footer {
+            font-size: 12px;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: #888;
+        }
+
+        a:link,
+        a:visited {
+            color: blue;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: red;
+        }
+
+        #um-banner {
+            margin-top: 15px;
+            border-top: 1px solid #888;
+            padding-top: 15px;
+        }
+
+        @media screen and (min-width: 350px) and (max-width: 799px) {
+            #hv-banner {
+                display: inline-block;
+                vertical-align: top;
+            }
+
+            #um-banner {
+                display: inline-block;
+                padding-top: 0;
+                margin-top: 0;
+                border-top: none;
+                margin-left: 30px;
+                vertical-align: top;
+            }
+        }
+
+        @media screen and (max-width: 799px) {
+            .container {
+                width: 100%;
+            }
+
+            #generator-container {
+                position: relative;
+                left: 0;
+                top: 0;
+                display: block;
+            }
+
+            #banner-container {
+                position: relative;
+                left: 0;
+                top: 0;
+                display: block;
+                margin-top: 20px;
+                border: none;
+            }
+
+            #grid-container {
+                width: 100%;
+            }
+
+            .num {
+                padding: 2px;
+                font-size: 14px;
+                margin: 1px;
+            }
+        }
+
+        @media screen and (min-width: 800px) and (max-width: 1300px) {
+            #grid-container {
+                width: 600px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 style="color: white;">Teknack 2021</h2>
+
+        <div id="generator-container">
+            <input type="button" value="Generate" id="btn-generate" onclick="generateNum()">
+            <br>
+            <div id="number">&nbsp;&nbsp;</div>
+        </div>
+
+        <!-- <div style="margin-top: 20px;">
+            <a href="bingo-ticket.htm">Bingo/Housie/Tambola Ticket Generator</a>
+        </div> -->
+
+        <!-- <div style="margin-top: 20px;">
+            <span style="vertical-align: middle;">Get Housie app &nbsp;&nbsp;</span>
+            <a href="https://play.google.com/store/apps/details?id=com.uconomix.housie"><img
+                    src="https://www.yash.info/blog/wp-content/uploads/2021/01/dl-google.png"
+                    style="width: 100px; height: auto; vertical-align: middle; border: 0"></a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="https://apps.apple.com/in/app/housie-ticket-generator/id1549459502"><img
+                    src="https://www.yash.info/blog/wp-content/uploads/2021/01/dl-apple.png"
+                    style="width: 100px; height: auto; vertical-align: middle; border: 0"></a>
+        </div> -->
+
+
+        <div id="grid-container">
+
+        </div>
+    </div>
+    <div id="banner-container">
+        <div>
+            <div id="hv-banner">
+
+                <img src="https://www.hexavault.com/images/HexaVault_64.png" width="64" height="64"
+                    alt="HexaVault Password Manager" border="0">
+                <div style="margin-top:15px; margin-bottom: 15px;">
+                    <img src="https://www.hexavault.com/images/HexaVault_name_120.png" width="120" height="19"
+                        alt="HexaVault Password Manager" border="0">
+                </div>
+                Sponsor 1
+
+            </div>
+
+            <div id="um-banner">
+
+                <img src="https://www.uconomix.com/Images/uMark-128.png" width="64" height="64"
+                    alt="uMark Batch Photo Watermark" border="0">
+                <div style="margin-top:10px; margin-bottom: 10px;">
+                    <img src="https://www.uconomix.com/Images/uMark_name.gif" width="120" height="42"
+                        alt="uMark Batch Photo Watermark" border="0">
+                </div>
+                Sponsor 2
+
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+
+    </div>
+
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        (function ($) {
+            $.fn.extend({
+                numAnim: function (options) {
+                    if (!this.length)
+                        return false;
+
+                    this.defaults = {
+                        endAt: 90,
+                        numClass: 'autogen-num',
+                        duration: 0.5,   // seconds
+                        interval: 25  // ms
+                    };
+                    var settings = $.extend({}, this.defaults, options);
+
+                    var $num = $('<span/>', {
+                        'class': settings.numClass
+                    });
+
+                    return this.each(function () {
+                        var $this = $(this);
+
+                        // Wrap each number in a tag.
+                        var frag = document.createDocumentFragment(),
+                            numLen = settings.endAt.toString().length;
+                        for (x = 0; x < numLen; x++) {
+                            var rand_num = Math.floor(Math.random() * 10);
+                            frag.appendChild($num.clone().text(rand_num)[0])
+                        }
+                        $this.empty().append(frag);
+
+                        var get_next_num = function (num) {
+                            ++num;
+                            if (num > 9) return 0;
+                            return num;
+                        };
+
+                        // Iterate each number.
+                        $this.find('.' + settings.numClass).each(function () {
+                            var $num = $(this),
+                                num = parseInt($num.text());
+
+                            var interval = setInterval(function () {
+                                num = get_next_num(num);
+                                $num.text(num);
+                            }, settings.interval);
+
+                            setTimeout(function () {
+                                clearInterval(interval);
+                            }, settings.duration * 1000 - settings.interval);
+                        });
+
+                        setTimeout(function () {
+                            $this.text(settings.endAt.toString());
+                            $("#num-" + settings.endAt).addClass("generated");
+                            generated_numbers.push(settings.endAt);
+                        }, settings.duration * 1000);
+                    });
+                }
+            });
+        })(jQuery);
+
+        var generated_numbers = [];
+
+        $(function () {
+            for (i = 1; i <= 100; i++) {
+                $("<div />").addClass("num").html(i).attr("id", "num-" + i).appendTo("#grid-container");
+            }
+
+            var cw = $('.num').width();
+            $('.num').css({ 'height': cw + 'px', 'line-height': cw + 'px' });
+        });
+
+        function generateNum() {
+            if (generated_numbers.length == 100) {
+                alert("Full House!");
+                return;
+            }
+            while (true) {
+                var i = getRandomInt(1, 100);
+                if ($.inArray(i, generated_numbers) == -1) {
+                    //$("#number").html(i);
+                    $("#number").numAnim({
+                        endAt: i
+                    });
+                    //$("#num-" + i).addClass("generated");
+                    //generated_numbers.push(i);
+                    //setTimeout("generateNum()",200);
+                    break;
+                }
+            }
+        }
+
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+    </script>
+
+
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-256749-9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-256749-9');
+    </script>
+
+    <style>
+        .tb_button {
+            padding: 1px;
+            cursor: pointer;
+            border-right: 1px solid #8b8b8b;
+            border-left: 1px solid #FFF;
+            border-bottom: 1px solid #fff;
+        }
+
+        .tb_button.hover {
+            borer: 2px outset #def;
+            background-color: #f8f8f8 !important;
+        }
+
+        .ws_toolbar {
+            z-index: 100000
+        }
+
+        .ws_toolbar .ws_tb_btn {
+            cursor: pointer;
+            border: 1px solid #555;
+            padding: 3px
+        }
+
+        .tb_highlight {
+            background-color: yellow
+        }
+
+        .tb_hide {
+            visibility: hidden
+        }
+
+        .ws_toolbar img {
+            padding: 2px;
+            margin: 0px
+        }
+    </style>
+</body>
+
+</html>
